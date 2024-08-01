@@ -1,0 +1,133 @@
+/* src/Writeportfolio.css */
+
+.portfolioContainer {
+  font-family: 'Arial', sans-serif;
+  max-width: 1100px;
+  margin: 0 auto;
+  background: linear-gradient(to right, #5fa2ff, #046bfa); /* Gradient background */
+  border-radius: 12px; /* Rounded corners for the container */
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Soft shadow for depth */
+}
+
+.article {
+  background-color: #ffffff; /* White background for the article */
+  border-radius: 10px; /* Rounded corners for the article */
+  padding: 20px;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+}
+
+.article-header {
+  margin-bottom: 2rem;
+}
+
+.article-title {
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+
+.written-by,
+.published-on,
+.date {
+  font-size: 0.9rem;
+  color: #888;
+}
+
+.author.highlight {
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: #007BFF; /* Highlight color */
+}
+
+.article-content {
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+}
+
+.paragraph {
+  margin-bottom: 1.5rem; /* Space between paragraphs */
+  text-align: justify; /* Optional: justify text for better readability */
+  white-space: pre-line; /* Preserve whitespace and line breaks */
+}
+
+.pagination {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 1rem 0;
+}
+
+.page-button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 6px;
+  background-color: #007BFF;
+  color: #fff;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s ease; /* Smooth transition */
+}
+
+.page-button:hover {
+  background-color: #0056b3; /* Darker shade on hover */
+}
+
+.page-button:disabled {
+  background-color: #cccccc; /* Grey for disabled state */
+  cursor: not-allowed;
+}
+
+.page-info {
+  font-size: 16px;
+  color: #333;
+}
+
+.article-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* Aligns items on opposite sides */
+}
+
+.likeButton {
+  padding: 10px 24px;
+  border: none;
+  border-radius: 6px;
+  background-color: #ffffff;
+  color: #000000;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s ease; /* Smooth transition */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* Button shadow */
+}
+
+.likeButton:hover {
+  background-color: #62a6ef; /* Darker shade on hover */
+}
+.likeButton:focus {
+  outline: 2px solid #62a6ef; /* Custom focus outline */
+}
+
+.article-footer span {
+  font-size: 16px;
+  color: #333;
+}
+.shareButton {
+  padding: 10px 24px;
+  border: none;
+  border-radius: 6px;
+  background-color: #ffffff;
+  color: #000000;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s ease; /* Smooth transition */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* Different color for share button */
+}
+
+.shareButton:hover {
+  background-color: #62a6ef;  /* Darker shade on hover */
+}
+
+.shareButton:focus {
+  outline: 2px solid #62a6ef ; /* Custom focus outline */
+}

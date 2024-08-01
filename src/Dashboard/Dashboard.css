@@ -1,0 +1,101 @@
+
+.sidebarLogo{
+    width :4rem ;
+    height: 4rem;
+    object-fit: cover;
+}
+.Dashboard{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+}
+.dashboard-container {
+    display: flex;
+    width: 100%;
+  }
+  
+  .sidebar {
+    
+    overflow: hidden;
+    position: sticky;
+    top: 0;
+    width: 15rem;
+    background-color: #ffffff;
+    color: #333;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    height: 100vh;
+  }
+  
+  .sidebar-content {
+    
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: flex-start;
+    justify-content: flex-start;
+  }
+  
+ 
+  
+
+  .nav-links {
+    display: flex;
+    flex-direction: column;
+  
+   width: 100%;
+  
+  }
+  .Dashboardbtns{ 
+    
+    width: 100%;
+    background: linear-gradient(to right, #5fa2ff, #046bfa);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.6rem;
+    flex-direction: row;
+    color: white;
+    height: 10rem;
+}
+.texts{
+    margin-left: 1rem;
+    font-size: 0.9rem;
+    font-weight: 500;
+    font-family: 'Inter', sans-serif;
+}
+  
+  .Dashboardbtns .icons {
+    font-size: 1.9rem;
+  }
+  
+  .Dashboardbtns .texts {
+    font-size: 1.2rem;
+  }
+  .nav-link {
+    border-bottom:  #046bfa solid 1px;
+    text-decoration: none;
+    color: #046bfa;
+    font-size: 1.2rem;
+    font-weight:bold;
+    padding: 1rem 2rem;
+    width: 100%;
+    transition: color 0.3s ease;
+  }
+  
+  .nav-link:hover {
+    color: #000000;
+  }
+  .nav-link span {
+    margin-left: 1rem;
+  }
+  .main-content {
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    overflow-y: auto;
+  }
+  

@@ -1,0 +1,108 @@
+.card {
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  overflow: hidden;
+  width: 60rem;
+  max-width: 1100px;
+  margin: 16px auto;
+  padding: 20px;
+  transition: box-shadow 0.3s ease;
+  cursor: pointer;
+  background-color: #fff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  position: relative;
+}
+
+.card:before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 8px;
+  background: linear-gradient(to right, #5fa2ff, #046bfa);
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
+}
+
+.card:hover {
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+.card-content {
+  padding: 16px;
+}
+
+.card-title {
+  font-size: 1.8em;
+  margin: 0 0 10px 0;
+  color: #333;
+}
+
+.card-snippet {
+  font-size: 1.1em;
+  margin: 0 0 16px 0;
+  color: #555;
+}
+
+.card-details {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.9em;
+  color: #777;
+  margin-bottom: 16px;
+}
+
+.card-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.9em;
+  color: #777;
+}
+
+.card-likes {
+  display: flex;
+  align-items: center;
+}
+
+.card-likes::before {
+  content: '❤️';
+  margin-right: 6px;
+  color: #e74c3c;
+}
+
+.card-author {
+  font-style: italic;
+}
+
+.card-date {
+  font-style: italic;
+  color: #999;
+}
+
+.card-category {
+  background-color: rgba(0, 0, 0, 0.1);
+  border-radius: 12px;
+  padding: 4px 12px;
+  color: #046bfa;
+}
+
+.view-post-button {
+  display: inline-block;
+  margin-top: 16px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 12px;
+  background-color: #046bfa;
+  color: white;
+  font-size: 1em;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.view-post-button:hover {
+  background-color: #5fa2ff;
+  color: white;
+}
