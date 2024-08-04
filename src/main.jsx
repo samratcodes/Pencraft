@@ -13,6 +13,9 @@ import Authors from './Authors/Authors.jsx'
 import Writings from './Writings/Writings.jsx'
 import AboutUs from './Aboutus/AboutUs.jsx'
 import Dashboard from './Dashboard/Dashboard.jsx'
+import Login from './Authentication/Login.jsx'
+import Signup from './Authentication/Signup.jsx'
+import Profile from './Dashboard/Inside/Profile.jsx'
 
 const router = createBrowserRouter([
   {
@@ -43,12 +46,20 @@ const router = createBrowserRouter([
         element:<AboutUs/>
       },
       {
+        path:'Login',
+        element:<Login/>
+      },
+      {
+        path:'signup',
+        element:<Signup/>
+      },
+      {
         path:'Dashboard',
         element:<Dashboard/>,
         children:[
           {
             path: 'profile',
-            element: <div>pp lorem10000 </div>
+            element: <Profile/>
           }
         ]
       }

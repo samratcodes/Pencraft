@@ -1,0 +1,87 @@
+.authContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #f0f4f8; /* Soft background color */
+}
+
+.formContainer {
+    border-radius: 1rem;
+    width: 100%;
+    max-width: 400px; /* Limit the max width */
+    background: linear-gradient(to right, #5fa2ff, #046bfa); /* Aesthetic gradient */
+    padding: 2rem; /* More padding for better spacing */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); /* Soft shadow for depth */
+    color: white;
+}
+
+.formContainer h1 {
+    margin-bottom: 2rem; /* Added bottom margin for title */
+    text-align: center;
+}
+
+.formContainer form {
+    background-color: white;
+    border-radius: 2rem;
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem; /* Added gap between form fields */
+}
+.inputGroup{
+    display: flex;
+    flex-direction: column;
+}
+.inputGroup label {
+    font-size: 1rem;
+    color: #046bfa;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+}
+
+.inputGroup input {
+    border: 1px solid #ccd6dd; /* Soft border color */
+    height: 2.5rem; /* Increased height for better touch target */
+    padding: 0.5rem;
+    border-radius: 0.6rem;
+    font-size: 1rem;
+}
+
+.formContainer button {
+    background-color: #1173FB;
+    color: #ffffff;
+    border: none;
+    font-size: 1rem;
+    font-weight: bold;
+    width: 100%; /* Full width */
+    padding: 0.8rem 0; /* Padding adjusted */
+    border-radius: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s; /* Smooth transition for hover */
+}
+
+.formContainer button:hover {
+    background-color: #015cdc;
+}
+
+.linkContainer {
+    text-align: center;
+    margin-top: 1rem; /* Margin top for separation */
+}
+
+.linkContainer a {
+    color: #046bfa;
+    font-weight: bold;
+}
+
+/* Responsive adjustments for smaller screens */
+@media (max-width: 600px) {
+    .formContainer {
+        padding: 1.5rem;
+    }
+
+    .formContainer form {
+        padding: 1rem;
+    }
+}
