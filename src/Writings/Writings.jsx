@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import CardSection from '../CardSection/CardSection';
 import Card from '../CardSection/Card';
 import './Writing.css';
+
 const Writings = () => {
   const [sortOption, setSortOption] = useState('date');
   const [filterOption, setFilterOption] = useState('');
@@ -122,48 +123,46 @@ const Writings = () => {
 
   return (
     <div className='Writings'>
-    <div className='writing-container'>
-      <div className='writingtitle'>
-      <i className="fa-solid fa-book"> </i>
-        <h1>Writings</h1>
-      </div>
-     <div id='wcsection'>
-     <div className='filters' >
-        <h1> Filters</h1>
-        <div>
-          <label htmlFor="sort">Sort by:</label>
-          <select id="sort" value={sortOption} onChange={e => setSortOption(e.target.value)}>
-            <option value="date">Date</option>
-            <option value="likes">Likes</option>
-          </select>
+      <div className='writing-container'>
+        <div className='writingtitle'>
+          <i className="fa-solid fa-book"></i>
+          <h1>Writings</h1>
         </div>
-        <div>
-          <label htmlFor="filter">Filter by category:</label>
-          <select id="filter" value={filterOption} onChange={e => setFilterOption(e.target.value)}>
-            <option value="">All</option>
-            <option value="Technology">Technology</option>
-            <option value="Health">Health</option>
-            <option value="Lifestyle">Lifestyle</option>
-            <option value="Travel">Travel</option>
-            <option value="Food">Food</option>
-            <option value="Education">Education</option>
-            <option value="Fitness">Fitness</option>
-            <option value="Fashion">Fashion</option>
-            <option value="Science">Science</option>
-            <option value="Art">Art</option>
-          </select>
+        <div id='wcsection'>
+          <div className='filters'>
+            <h1>Filters</h1>
+            <div>
+              <label htmlFor="sort">Sort by:</label>
+              <select id="sort" value={sortOption} onChange={e => setSortOption(e.target.value)}>
+                <option value="date">Date</option>
+                <option value="likes">Likes</option>
+              </select>
+            </div>
+            <div>
+              <label htmlFor="filter">Filter by category:</label>
+              <select id="filter" value={filterOption} onChange={e => setFilterOption(e.target.value)}>
+                <option value="">All</option>
+                <option value="Technology">Technology</option>
+                <option value="Health">Health</option>
+                <option value="Lifestyle">Lifestyle</option>
+                <option value="Travel">Travel</option>
+                <option value="Food">Food</option>
+                <option value="Education">Education</option>
+                <option value="Fitness">Fitness</option>
+                <option value="Fashion">Fashion</option>
+                <option value="Science">Science</option>
+                <option value="Art">Art</option>
+              </select>
+            </div>
+          </div>
+          <div className='blog-list'>
+            {sortedAndFilteredBlogs.map(blog => (
+              <Card key={blog.id} blog={blog} />
+            ))}
+          </div>
         </div>
       </div>
-      <div>
-        
-      {sortedAndFilteredBlogs.map(blog => (
-        <Card key={blog.id} blog={blog} />
-      ))}
-      </div>
-    </div> 
-     </div>
     </div>
-
   );
 };
 

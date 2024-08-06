@@ -16,6 +16,10 @@ import Dashboard from './Dashboard/Dashboard.jsx'
 import Login from './Authentication/Login.jsx'
 import Signup from './Authentication/Signup.jsx'
 import Profile from './Dashboard/Inside/Profile.jsx'
+import Edit from './Dashboard/Inside/Edit.jsx'
+import Post from './Dashboard/Inside/Post.jsx'
+import Analytics from './Dashboard/Inside/Analytics.jsx'
+
 
 const router = createBrowserRouter([
   {
@@ -27,7 +31,7 @@ const router = createBrowserRouter([
         element:<Home/>
       },
       {
-        path:'author',
+        path:'author/:id',
         element:<AuthorPage/>
       },
       {
@@ -60,7 +64,20 @@ const router = createBrowserRouter([
           {
             path: 'profile',
             element: <Profile/>
-          }
+          },
+          {
+            path: 'edit',
+            element:<Edit/>
+          },
+          {
+            path: 'post',
+            element:<Post/>
+          },
+          {
+            path: 'analytics',
+            element:<Analytics/>
+          },
+ 
         ]
       }
       

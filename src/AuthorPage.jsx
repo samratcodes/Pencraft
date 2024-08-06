@@ -1,7 +1,6 @@
 import React from 'react';
 import './AuthorPage.css';
-import user from './assets/user.jpeg';
-import Card from './CardSection/Card';
+
 import CardSection from './CardSection/CardSection';
 
 const AuthorPage = () => {
@@ -44,7 +43,7 @@ const AuthorPage = () => {
         <div className="software-skills">
           <h3>My work</h3>
           <div>
-            <CardSection/>
+<CardSection/>
           </div>
         </div>
       </div>

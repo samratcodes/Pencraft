@@ -1,0 +1,36 @@
+/* src/Analytics.css */
+
+.analytics-container {
+    width: 100%;
+    margin: 40px 20px;
+    padding: 20px;
+    border-radius: 12px;
+    background-color: #ffffff;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+  }
+  
+  h2 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 20px;
+  }
+  
+  .charts {
+    display: flex;
+    flex-wrap: wrap; /* Allow charts to wrap to the next line */
+    gap: 30px; /* Space between charts */
+    justify-content: center; /* Center the charts horizontally */
+  }
+  
+  .chart-item {
+    flex: 1 1 100%; /* Allow items to grow and shrink, with a base width of 100% */
+    max-width: 1000px; /* Prevent charts from becoming too wide */
+    margin: 0 auto;
+  }
+  
+  .chart-item h3 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 10px;
+  }
+  

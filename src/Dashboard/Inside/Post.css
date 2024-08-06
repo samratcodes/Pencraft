@@ -1,0 +1,98 @@
+/* src/Post.css */
+.post{
+    width: 100%; /* Wider container */
+    margin: 20px auto;
+  }
+
+.post-container {
+    background-color: #f9f9f9; 
+    padding: 40px;
+    border-radius: 12px;
+    width: 70%; 
+    margin: 20px auto;
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1); /* Softer, larger shadow */
+    border: 1px solid #e0e0e0; /* Light border for separation */
+  }
+  
+  h2 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 30px;
+    font-size: 2.5rem; /* Larger heading */
+    font-weight: bold; /* Bold heading */
+  }
+  
+  .message {
+    color: #28a745; /* Green color for success messages */
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 1.1rem; /* Larger font size */
+    font-weight: bold; /* Bold text */
+  }
+  
+  .post-form {
+    display: flex;
+    flex-direction: column;
+    gap: 25px; /* Increased spacing */
+  }
+  
+  .form-group {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  label {
+    font-weight: 600;
+    margin-bottom: 10px;
+    color: #555;
+    font-size: 1.1rem; /* Larger label font size */
+  }
+  
+  input[type='text'],
+  textarea,
+  select {
+    padding: 14px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    font-size: 1rem;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease; /* Smooth transition */
+  }
+  
+  input[type='text']:focus,
+  textarea:focus,
+  select:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 8px rgba(0, 123, 255, 0.5); /* Add shadow on focus */
+    outline: none;
+  }
+  
+  textarea {
+    resize: vertical;
+    font-family: 'Arial', sans-serif;
+  }
+  
+  select {
+    font-family: 'Arial', sans-serif;
+  }
+  
+  .submit-button {
+    padding: 14px 28px;
+    background-color: #007bff;
+    color: #ffffff;
+    border: none;
+    border-radius: 10px;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease; /* Smooth transition */
+    font-weight: 600; /* Bold text */
+  }
+  
+  .submit-button:hover {
+    background-color: #0056b3;
+    transform: scale(1.05); /* Slight scale effect on hover */
+  }
+  
+  .submit-button:focus {
+    outline: 2px solid #0056b3; /* Custom focus outline */
+  }
+  

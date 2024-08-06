@@ -1,6 +1,7 @@
 import React from 'react';
 import './Home.css';
 import logo from '../assets/Pencraftlogo.png'
+import { Link } from 'react-router-dom';
 function Home() {
   return (
     <div className="containerr">
@@ -10,7 +11,9 @@ function Home() {
         <div className="hero-text">
           <h2>Showcase Your Writing Talent</h2>
           <p>Join a community of authors, create your profile, and showcase your writing portfolio.</p>
-          <button>Get Started</button>
+          <button >
+            <Link to="/signup">Get Started</Link>
+            </button>
         </div>
       </div>
 

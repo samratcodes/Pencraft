@@ -1,0 +1,13 @@
+.containerp{
+    width: 20%;
+    padding:0px;
+    margin: 0px 0px;
+}
+@media(min-width: 1024px) {
+    .containerp {
+        width: 20%
+    }
+}
+.AuthorPagee{
+    width: 20%;
+}

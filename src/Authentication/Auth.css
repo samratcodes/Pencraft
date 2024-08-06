@@ -9,9 +9,9 @@
 .formContainer {
     border-radius: 1rem;
     width: 100%;
-    max-width: 400px; /* Limit the max width */
+    max-width: 500px; /* Wider max width */
     background: linear-gradient(to right, #5fa2ff, #046bfa); /* Aesthetic gradient */
-    padding: 2rem; /* More padding for better spacing */
+    padding: 2.5rem; /* More padding for better spacing */
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); /* Soft shadow for depth */
     color: white;
 }
@@ -24,15 +24,17 @@
 .formContainer form {
     background-color: white;
     border-radius: 2rem;
-    padding: 1.5rem;
+    padding: 2rem; /* Increased padding */
     display: flex;
     flex-direction: column;
     gap: 1.5rem; /* Added gap between form fields */
 }
-.inputGroup{
+
+.inputGroup {
     display: flex;
     flex-direction: column;
 }
+
 .inputGroup label {
     font-size: 1rem;
     color: #046bfa;
@@ -40,12 +42,21 @@
     font-weight: 600;
 }
 
-.inputGroup input {
+.inputGroup input,
+.inputGroup textarea {
     border: 1px solid #ccd6dd; /* Soft border color */
-    height: 2.5rem; /* Increased height for better touch target */
     padding: 0.5rem;
     border-radius: 0.6rem;
     font-size: 1rem;
+}
+
+.inputGroup input {
+    height: 2.5rem; /* Increased height for better touch target */
+}
+
+.inputGroup textarea {
+    resize: vertical;
+    height: 5rem; /* Height for textarea */
 }
 
 .formContainer button {
@@ -76,12 +87,41 @@
 }
 
 /* Responsive adjustments for smaller screens */
-@media (max-width: 600px) {
+@media (max-width: 768px) {
     .formContainer {
         padding: 1.5rem;
     }
 
     .formContainer form {
         padding: 1rem;
+    }
+
+    .inputGroup input,
+    .inputGroup textarea {
+        font-size: 0.9rem; /* Slightly smaller font size for smaller screens */
+    }
+
+    .formContainer button {
+        font-size: 0.9rem; /* Slightly smaller font size for buttons */
+    }
+}
+
+@media (max-width: 480px) {
+    .formContainer {
+        padding: 1rem;
+    }
+
+    .formContainer form {
+        padding: 0.8rem;
+    }
+
+    .inputGroup input,
+    .inputGroup textarea {
+        font-size: 0.8rem; /* Smaller font size for very small screens */
+    }
+
+    .formContainer button {
+        font-size: 0.8rem; /* Smaller font size for buttons */
+        padding: 0.6rem 0; /* Adjust padding */
     }
 }
