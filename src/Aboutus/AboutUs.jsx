@@ -6,7 +6,7 @@ const AboutUs = () => {
     <div className="about-us">
 <div className='aboutcontainer'>
   <div className='abouttitle'>
-  <i class="fa-solid fa-circle-info"></i>
+  <i className="fa-solid fa-circle-info"></i>
     <h1>About Us</h1>
   </div>
 <div className="about-content">

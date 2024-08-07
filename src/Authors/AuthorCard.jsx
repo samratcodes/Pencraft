@@ -1,13 +1,13 @@
 import React from 'react';
 
 const AuthorCard = ({ author }) => {
-  const { AuthorName, Description, Id, Username, category, totalPosts } = author;
+  const { AuthorName, Description, Id, Username, category, totalPosts,ImageUrl  } = author;
   const likes=45;
 
   return (
     <div className="author-card" role="button" onClick={() => window.location.href = `/author/${Id}`}>
       <div className='authimg_cover'>
-        <img src={`https://example.com/image/${Username}`} alt={`Image of ${AuthorName}`} className="author-image" />
+        <img src={ImageUrl} alt={`Image of ${AuthorName}`} className="author-image" />
       </div>
       <div className="author-content">
         <h2 className="author-name">{AuthorName}</h2>

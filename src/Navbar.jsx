@@ -46,7 +46,7 @@ const Navbar = () => {
       </div>
 
       <div className='Hamburger' onClick={handleToggleNav}>
-        <i className="fa-solid fa-bars"></i> {/* Hamburger icon */}
+        <i className="fa-solid fa-bars"></i> 
       </div>
 
       <div className={`Navelement ${navVisible ? 'open' : ''}`}>

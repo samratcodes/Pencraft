@@ -13,14 +13,14 @@ const Authors = () => {
     const fetchAuthors = async () => {
       try {
         const response = await fetch('http://localhost:8000/api/authors');
-        
         if (!response.ok) {
           throw new Error('Network response was not ok');
         }
 
         const data = await response.json();
         setAuthors(data); // Update state with fetched data
-        setLoading(false); // Set loading to false once data is fetched
+        setLoading(false);
+        console.log(data) // Set loading to false once data is fetched
       } catch (error) {
         setError(error); // Set error if fetching fails
         setLoading(false);

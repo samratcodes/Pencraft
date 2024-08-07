@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState,useEffect } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import './Auth.css';
 
@@ -9,11 +9,27 @@ const Signup = () => {
     const [authorName, setAuthorName] = useState('');
     const [description, setDescription] = useState('');
     const [contact, setContact] = useState('');
-
+    const[isLoggedIn, setIsLoggedIn] = useState(false);
+    const navigate = useNavigate();
     const handleSubmit = async (e) => {
+
         e.preventDefault();
+        const fetchUserData = async () => {
+            try {
+              const response = await axios.get('http://localhost:8000/api/auth/user', { withCredentials: true });
+              setIsLoggedIn(response.status === 200);
+            } catch (error) {
+              console.error('Error:');
+            }
+          };
         
-        // Prepare user data with dummy values for non-input fields
+          
+            fetchUserData(); // Call the fetch function when the component mounts
+        
+        
+if(isLoggedIn){
+    navigate('/dashboard/profile');
+}
         const userData = {
             Username: username.trim(),
             Password: password.trim(),
@@ -26,6 +42,7 @@ const Signup = () => {
         try {
             const response = await axios.post('http://localhost:8000/api/auth/register', userData);
             console.log('Response:', response);
+            navigate('/Login');
         } catch (error) {
             if (error.response) {
                 // API returned an error response

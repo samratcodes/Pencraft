@@ -1,5 +1,5 @@
 // src/Login.js
-import React, { useState } from 'react';
+import React, { useState,useEffect} from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import './Auth.css';
@@ -9,7 +9,25 @@ const Login = () => {
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
     const [success, setSuccess] = useState('');
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
     const navigate = useNavigate();
+    const fetchUserData = async () => {
+        try {
+          const response = await axios.get('http://localhost:8000/api/auth/user', { withCredentials: true });
+          console.log('API Response:', response);
+          setIsLoggedIn(response.status === 200);
+        } catch (error) {
+          console.error('Error fetching user data:', error);
+        }
+      };
+    
+      useEffect(() => {
+        fetchUserData(); // Call the fetch function when the component mounts
+      }, []);
+    
+if(isLoggedIn){
+navigate('/dashboard/profile');
+}
 
     const handleSubmit = async (e) => {
         e.preventDefault();
