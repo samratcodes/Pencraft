@@ -1,24 +1,53 @@
 // src/Writeportfolio.js
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react'; // Import useEffect
 import './Writeportfolio.css';
+import { useParams } from 'react-router-dom';
 
 const Writeportfolio = () => {
-  const currentUrl = window.location.href;
-  console.log(currentUrl);
+  const { id } = useParams();
+  const[data, setData] = useState({
+    Content: "",
+    Date: "",
+    Id: 0,
+    PostTitle: "",
+    PostType: "",
+    User:{
+AuthorName: "",
+Description: "",
+Id: 0,
+category: "",
+contacts: "",
+totalPosts: 0,
+username: ""
+    }
+    
+  });
+
+  useEffect(() => {
+    // Fetch data from the API when the component mounts
+    const fetchData = async () => {
+      try {
+        const response = await fetch(`http://localhost:8000/api/posts/${id}`);
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        const data = await response.json();
+        console.log(data); // Log the fetched data
+        setData(data);
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    };
+
+    fetchData();
+  }, [id]); // The effect will re-run if the `id` changes
+
   const post = {
-    title: 'The Enchanted Forest Journey',
-    type: 'Short Story',
-    author: 'John Doe',
-    content: [
-      `Once upon a time in a mysterious forest, there was a hidden secret. The trees whispered stories of old, and the leaves danced to the tune of the wind. The forest was alive with magic, and every corner held a new adventure. The sunlight filtered through the dense canopy, casting dappled shadows on the forest floor.`,
-      `Deep within the forest, there was a clearing where a majestic oak tree stood. This tree was ancient, its trunk wide and gnarled, and its branches stretched out like welcoming arms. Legends spoke of the tree's wisdom and the magical creatures that guarded it.`,
-      `One day, a young explorer named Elara ventured into the forest. She had heard tales of the magical clearing and the secrets it held. Determined to uncover the truth, she journeyed through the thick underbrush, following the whispers of the trees. As she reached the clearing, she felt a sense of awe and wonder. The air was thick with enchantment, and the oak tree seemed to glow with an inner light.`,
-      `Elara approached the tree, and as she did, she noticed a small door carved into its trunk. Her heart raced with excitement and curiosity. She pushed the door open and stepped inside, finding herself in a cozy, warm space filled with soft light. Shelves lined with ancient books and jars of strange, glowing substances surrounded her.`,
-      `At the center of the room was a pedestal with a shimmering crystal. Elara reached out to touch it, and as her fingers brushed its surface, she felt a surge of energy. The crystal pulsed with light, and suddenly, she was transported to another world. A world where the forest was even more vibrant, and magical creatures roamed freely.`,
-      `Elara spent what felt like hours exploring this new realm, meeting fairies, talking animals, and wise old wizards. She learned the secrets of the forest and its magic, and when she finally returned to her own world, she carried with her a piece of that magic in her heart.`,
-      `From that day on, Elara became the guardian of the forest, protecting its secrets and sharing its wonders with those who were brave and curious enough to seek them. And the mysterious forest remained a place of magic and adventure for all who dared to enter.`
-    ],
-    date: 'July 29, 2024'
+    title: data.PostTitle,
+    type: data.User.category,
+    author:data.User.AuthorName,
+    content: data.Content.split("\n"),
+    date:data.Date
   };
 
   return (
@@ -58,6 +87,7 @@ const Post = ({ title, type, author, content, date }) => {
       setCurrentPage(currentPage - 1);
     }
   };
+
   const handleShare = () => {
     navigator.clipboard.writeText(window.location.href)
       .then(() => {
@@ -68,7 +98,6 @@ const Post = ({ title, type, author, content, date }) => {
         console.error('Error copying link: ', err);
       });
   };
-
 
   const renderContent = () => {
     const startIndex = currentPage * paragraphsPerPage;
@@ -85,7 +114,6 @@ const Post = ({ title, type, author, content, date }) => {
         <p className="written-by">Written by</p>
         <p className="author highlight">{author}</p>
         <p className="published-on">Published on {date}</p>
-   
       </div>
       <div className="article-content">
         <h4>{type}</h4>
@@ -106,13 +134,13 @@ const Post = ({ title, type, author, content, date }) => {
             onClick={handleNextPage}
             disabled={currentPage === totalPages - 1}
           >
-          <i className="fa-solid fa-arrow-right"></i>
+            <i className="fa-solid fa-arrow-right"></i>
           </button>
         </div>
       </div>
       <div className="article-footer">
         <button onClick={handleLike} className="likeButton">
-        {likes}{isLiked ? '❤️ Unlike' : '❤️ Like'}
+          {likes}{isLiked ? '❤️ Unlike' : '❤️ Like'}
         </button>
         <button onClick={handleShare} className="shareButton">
           🔗 Share

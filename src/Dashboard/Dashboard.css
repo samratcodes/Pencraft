@@ -98,4 +98,23 @@
     height: 100vh;
     overflow-y: auto;
   }
-  
+  @media (max-width:1050px) {
+    .sidebar{
+      width:30vw
+    }
+    .nav-link span{
+      display: none;
+    }
+    .Dashboardbtns .texts{
+      display: none;
+    }
+    .Dashboardbtns{
+      display: flex;
+      flex-direction: column;
+    }
+    @media (max-width:350px){
+      .sidebar{
+        width:30vw
+      }
+    }
+  }

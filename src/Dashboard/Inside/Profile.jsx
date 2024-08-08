@@ -3,7 +3,7 @@ import CardSection from '../../CardSection/CardSection';
 const Profile = () => {
   return (
     <div className=' AuthorPagee AuthorPage '>
-    <div className="containerp">
+    <div className="containerpp">
       <div className="profile-image">
         <img src='
      https://images.pexels.com/photos/7811599/pexels-photo-7811599.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'
