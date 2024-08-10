@@ -19,6 +19,7 @@ import Profile from './Dashboard/Inside/Profile.jsx'
 import Edit from './Dashboard/Inside/Edit.jsx'
 import Post from './Dashboard/Inside/Post.jsx'
 import Analytics from './Dashboard/Inside/Analytics.jsx'
+import Logout from './Dashboard/Inside/Logout.jsx'
 
 
 const router = createBrowserRouter([
@@ -52,6 +53,10 @@ const router = createBrowserRouter([
       {
         path:'Login',
         element:<Login/>
+      },
+      {
+        path:'logout',
+        element:<Logout/>
       },
       {
         path:'signup',

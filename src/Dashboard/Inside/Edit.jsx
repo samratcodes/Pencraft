@@ -1,131 +1,82 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './Edit.css';
 import Card from '../../CardSection/Card';
+import axios from 'axios';
 
 const Edit = () => {
-  const [blogs, setBlogs] = useState([
-    {
-      id: 1,
-      title: 'Blog Post 1',
-      snippet: 'This is a brief snippet of my first blog post that contains more than twenty words to demonstrate the trimming functionality. It includes various sentences to reach the word limit and provide a realistic example.',
-      likes: 123,
-      author: 'John Doe',
-      date: 'July 27, 2024',
-      category: 'Technology',
-      imageUrl: 'https://via.placeholder.com/300',
-    },
-    {
-      id: 2,
-      title: 'Blog Post 2',
-      snippet: 'This is a brief snippet of my second blog post...',
-      likes: 98,
-      author: 'Jane Smith',
-      date: 'July 28, 2024',
-      category: 'Health',
-      imageUrl: 'https://via.placeholder.com/300',
-    },
-    {
-      id: 3,
-      title: 'Blog Post 3',
-      snippet: 'Snippet for blog post 3...',
-      likes: 45,
-      author: 'Alice Johnson',
-      date: 'July 29, 2024',
-      category: 'Lifestyle',
-      imageUrl: 'https://via.placeholder.com/300',
-    },
-    {
-      id: 4,
-      title: 'Blog Post 4',
-      snippet: 'Snippet for blog post 4...',
-      likes: 76,
-      author: 'Bob Brown',
-      date: 'July 30, 2024',
-      category: 'Travel',
-      imageUrl: 'https://via.placeholder.com/300',
-    },
-    {
-      id: 5,
-      title: 'Blog Post 5',
-      snippet: 'Snippet for blog post 5...',
-      likes: 102,
-      author: 'Charlie Davis',
-      date: 'August 1, 2024',
-      category: 'Food',
-      imageUrl: 'https://via.placeholder.com/300',
-    },
-    {
-      id: 6,
-      title: 'Blog Post 6',
-      snippet: 'Snippet for blog post 6...',
-      likes: 89,
-      author: 'Diane Evans',
-      date: 'August 2, 2024',
-      category: 'Education',
-      imageUrl: 'https://via.placeholder.com/300',
-    },
-    {
-      id: 7,
-      title: 'Blog Post 7',
-      snippet: 'Snippet for blog post 7...',
-      likes: 65,
-      author: 'Ethan Green',
-      date: 'August 3, 2024',
-      category: 'Fitness',
-      imageUrl: 'https://via.placeholder.com/300',
-    },
-    {
-      id: 8,
-      title: 'Blog Post 8',
-      snippet: 'Snippet for blog post 8...',
-      likes: 34,
-      author: 'Fiona Hill',
-      date: 'August 4, 2024',
-      category: 'Fashion',
-      imageUrl: 'https://via.placeholder.com/300',
-    },
-    {
-      id: 9,
-      title: 'Blog Post 9',
-      snippet: 'Snippet for blog post 9...',
-      likes: 54,
-      author: 'George King',
-      date: 'August 5, 2024',
-      category: 'Science',
-      imageUrl: 'https://via.placeholder.com/300',
-    },
-    {
-      id: 10,
-      title: 'Blog Post 10',
-      snippet: 'Snippet for blog post 10...',
-      likes: 110,
-      author: 'Hannah Lee',
-      date: 'August 6, 2024',
-      category: 'Art',
-      imageUrl: 'https://via.placeholder.com/300',
-    },
-  ]);
+  const [id, setId] = useState(1);
+  const [authorData, setAuthorData] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const [profile, setProfile] = useState(null);
+  const [blogs, setBlogs] = useState([]);
 
-  const [profile, setProfile] = useState({
-    name: 'John Doe',
-    title: 'Author | Freelance Writer | Editor',
-    location: 'Los Angeles, California, United States of America',
-    email: 'charlotte.brown@example.com',
-    phone: '+1 (234) 567-890',
-    linkedIn: 'https://www.linkedin.com/in/charlottebrown',
-    twitter: 'https://twitter.com/charlottebrown',
-    skills: [
-      'Creative Writing',
-      'Copywriting',
-      'Editing',
-      'Content Creation',
-      'Research',
-      'SEO Writing',
-      'Storytelling',
-      'Technical Writing',
-      'Blogging',
-    ],
-  });
+  // Fetch user data
+  const fetchUserData = async () => {
+    try {
+      const response = await axios.get('http://localhost:8000/api/auth/user', { withCredentials: true });
+      setId(response.data.Id);
+    } catch (error) {
+      console.error('Error fetching user data:', error);
+      setError(error);
+    }
+  };
+
+  useEffect(() => {
+    fetchUserData();
+  }, []);
+
+  useEffect(() => {
+    const fetchAuthorData = async () => {
+      try {
+        const response = await fetch(`http://localhost:8000/api/authors/${id}`);
+        if (!response.ok) {
+          throw new Error(`Error: ${response.statusText}`);
+        }
+        const data = await response.json();
+        setAuthorData(data);
+
+        // Initialize profile and blogs
+        setProfile({
+          name: data.AuthorName || '',
+          title: 'Author | Freelance Writer | Editor',
+          location: 'Los Angeles, California, United States of America',
+          contactInfo: data.contacts || '',
+          skills: data.skills || [], // Adjust if necessary
+        });
+
+        const transformedBlogs = data.Posts.map((post) => ({
+          id: post.Id,
+          title: post.PostTitle,
+          snippet: post.Content.substring(0, 100) + '...',
+          content: post.Content,
+          date: post.Date,
+          postType: post.PostType,
+        }));
+
+        setBlogs(transformedBlogs);
+        setLoading(false);
+      } catch (error) {
+        console.error('Failed to fetch author data:', error);
+        setLoading(false);
+        setError(error);
+      }
+    };
+
+    fetchAuthorData();
+  }, [id]);
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
+  if (error) {
+    return <div>Error: {error.message}</div>;
+  }
+
+  if (!profile) {
+    return <div>No data available</div>;
+  }
 
   // Handle input change for profile
   const handleChange = (e) => {
@@ -146,7 +97,6 @@ const Edit = () => {
     }));
   };
 
-  // Add a new skill
   const addSkill = () => {
     setProfile((prevProfile) => ({
       ...prevProfile,
@@ -154,7 +104,6 @@ const Edit = () => {
     }));
   };
 
-  // Remove a skill
   const removeSkill = (index) => {
     setProfile((prevProfile) => ({
       ...prevProfile,
@@ -162,15 +111,37 @@ const Edit = () => {
     }));
   };
 
-  // Handle form submission
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log('Updated Profile:', profile);
-    console.log('Updated Blogs:', blogs);
-    // Here you can send the updated profile and blogs to your server or update the state in a parent component
+    try {
+      const profileResponse = await axios.put(`http://localhost:8000/api/authors/${id}`, profile, {
+        withCredentials: true,
+      });
+
+      console.log('Profile updated successfully:', profileResponse.data);
+
+      const blogUpdates = blogs.map(blog => {
+        return axios.put(`http://localhost:8000/api/posts/${blog.id}`, {
+          Content: blog.content,
+          Date: blog.date,
+          Id: blog.id,
+          PostTitle: blog.title,
+          PostType: blog.postType
+        }, {
+          withCredentials: true,
+        });
+      });
+
+      await Promise.all(blogUpdates);
+
+      console.log('Blogs updated successfully');
+      alert('Profile and Blogs updated successfully!');
+    } catch (error) {
+      console.error('Error updating data:', error.response ? error.response.data : error);
+      alert('Failed to update data. Please try again.');
+    }
   };
 
-  // Handle card field change
   const handleCardChange = (index, field, value) => {
     const updatedBlogs = [...blogs];
     updatedBlogs[index] = {
@@ -180,9 +151,38 @@ const Edit = () => {
     setBlogs(updatedBlogs);
   };
 
-  // Delete a blog post
-  const deleteCard = (index) => {
-    setBlogs((prevBlogs) => prevBlogs.filter((_, i) => i !== index));
+  const savePostChanges = async (index) => {
+    const updatedBlog = blogs[index];
+    try {
+      const response = await axios.put(`http://localhost:8000/api/posts/${updatedBlog.id}`, {
+        Content: updatedBlog.content,
+        Date: updatedBlog.date,
+        Id: updatedBlog.id,
+        PostTitle: updatedBlog.title,
+        PostType: updatedBlog.postType
+      }, {
+        withCredentials: true,
+      });
+      console.log(`Blog ${updatedBlog.id} updated successfully:`, response.data);
+      alert('Blog post updated successfully!');
+    } catch (error) {
+      console.error('Error updating blog post:', error.response ? error.response.data : error);
+      alert('Failed to update blog post. Please try again.');
+    }
+  };
+
+  const deleteCard = async (index) => {
+    const blogId = blogs[index].id;
+    try {
+      await axios.delete(`http://localhost:8000/api/posts/${blogId}`, {
+        withCredentials: true,
+      });
+      setBlogs((prevBlogs) => prevBlogs.filter((_, i) => i !== index));
+      alert('Blog post deleted successfully!');
+    } catch (error) {
+      console.error('Error deleting blog post:', error.response ? error.response.data : error);
+      alert('Failed to delete blog post. Please try again.');
+    }
   };
 
   return (
@@ -219,38 +219,11 @@ const Edit = () => {
               />
             </div>
             <div className='form-group'>
-              <label>Email</label>
+              <label>Contact Info</label>
               <input
-                type='email'
-                name='email'
-                value={profile.email}
-                onChange={handleChange}
-              />
-            </div>
-            <div className='form-group'>
-              <label>Phone</label>
-              <input
-                type='tel'
-                name='phone'
-                value={profile.phone}
-                onChange={handleChange}
-              />
-            </div>
-            <div className='form-group'>
-              <label>LinkedIn</label>
-              <input
-                type='url'
-                name='linkedIn'
-                value={profile.linkedIn}
-                onChange={handleChange}
-              />
-            </div>
-            <div className='form-group'>
-              <label>Twitter</label>
-              <input
-                type='url'
-                name='twitter'
-                value={profile.twitter}
+                type='text'
+                name='contactInfo'
+                value={profile.contactInfo}
                 onChange={handleChange}
               />
             </div>
@@ -290,12 +263,35 @@ const Edit = () => {
                       placeholder='Edit title'
                     />
                     <textarea
-                      value={blog.snippet}
+                      value={blog.content}
                       onChange={(e) =>
-                        handleCardChange(index, 'snippet', e.target.value)
+                        handleCardChange(index, 'content', e.target.value)
                       }
-                      placeholder='Edit snippet'
+                      placeholder='Edit content'
                     />
+                    <input
+                      type='date'
+                      value={new Date(blog.date).toISOString().slice(0, 10)}
+                      onChange={(e) =>
+                        handleCardChange(index, 'date', new Date(e.target.value).toISOString())
+                      }
+                      placeholder='Edit date'
+                    />
+                    <input
+                      type='text'
+                      value={blog.postType}
+                      onChange={(e) =>
+                        handleCardChange(index, 'postType', e.target.value)
+                      }
+                      placeholder='Edit post type'
+                    />
+                    <button
+                      type='button'
+                      onClick={() => savePostChanges(index)}
+                      className='save-post'
+                    >
+                      Save Changes
+                    </button>
                     <button
                       type='button'
                       onClick={() => deleteCard(index)}
