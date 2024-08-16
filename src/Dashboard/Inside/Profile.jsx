@@ -1,6 +1,5 @@
 import {React , useEffect, useState }from 'react';
-import CardSection from '../../CardSection/CardSection';
-import Card from '../../CardSection/Card';
+import Card from '../../HomeSection/CardSection/Card';
 import axios from 'axios';
 const Profile = () => {
   const [id,setId]=useState(1);

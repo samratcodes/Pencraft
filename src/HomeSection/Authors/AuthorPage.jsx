@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import './AuthorPage.css';
 import { useParams } from 'react-router-dom';
-import Card from './CardSection/Card';
+import Card from '../CardSection/Card';
 const AuthorPage = () => {
   const { id } = useParams();
   const [authorData, setAuthorData] = useState(null); // State to store author data

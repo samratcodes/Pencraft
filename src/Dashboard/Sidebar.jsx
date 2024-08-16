@@ -12,17 +12,17 @@ const Sidebar = () => {
         {
           name: "Edit Profile",
           link: "/dashboard/Edit",
-          icon:<i class="fa-solid fa-pen-to-square"></i>
+          icon:<i className="fa-solid fa-pen-to-square"></i>
         },
         {
           name: "Post",
           link: "/dashboard/Post",
-          icon:<i class="fa-solid fa-address-card"></i>
+          icon:<i className="fa-solid fa-address-card"></i>
         },
         {
-          name: "Analytics",
-          link: "/dashboard/analytics",
-          icon:<i class="fa-solid fa-chart-simple"></i>
+          name: "Logout",
+          link: "/logout",
+          icon:<i className="fa-solid fa-chart-simple"></i>
         },
       ];
   return (

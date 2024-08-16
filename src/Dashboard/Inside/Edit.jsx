@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import './Edit.css';
-import Card from '../../CardSection/Card';
+import Card from '../../HomeSection/CardSection/Card';
 import axios from 'axios';
 
 const Edit = () => {
-  const [id, setId] = useState(1);
+  const [id, setId] = useState(3);
   const [authorData, setAuthorData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -39,7 +39,7 @@ const Edit = () => {
         // Initialize profile and blogs
         setProfile({
           name: data.AuthorName || '',
-          title: 'Author | Freelance Writer | Editor',
+          title: data.Description,
           location: 'Los Angeles, California, United States of America',
           contactInfo: data.contacts || '',
           skills: data.skills || [], // Adjust if necessary
@@ -87,7 +87,7 @@ const Edit = () => {
     }));
   };
 
-  // Handle skills change
+  
   const handleSkillsChange = (index, value) => {
     const updatedSkills = [...profile.skills];
     updatedSkills[index] = value;
@@ -114,7 +114,13 @@ const Edit = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const profileResponse = await axios.put(`http://localhost:8000/api/authors/${id}`, profile, {
+      const formattedProfile =  {
+        AuthorName:profile.name,
+        Description:profile.title,
+        contacts:profile.contactInfo
+      }
+      console.log(formattedProfile,profile)
+      const profileResponse = await axios.put(`http://localhost:8000/api/authors/${id}`, formattedProfile, {
         withCredentials: true,
       });
 
@@ -201,7 +207,7 @@ const Edit = () => {
               />
             </div>
             <div className='form-group'>
-              <label>Title</label>
+              <label>Description</label>
               <input
                 type='text'
                 name='title'

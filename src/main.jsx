@@ -6,12 +6,13 @@ import { RouterProvider } from 'react-router-dom'
 import {
   createBrowserRouter,
 } from "react-router-dom";
-import AuthorPage from './AuthorPage.jsx'
-import Home from './Home/Home.jsx'
+
+import AuthorPage from './HomeSection/Authors/AuthorPage.jsx'
+import Home from './HomeSection/Home/Home.jsx'
 import Writeportfolio from './Writeportfolio.jsx'
-import Authors from './Authors/Authors.jsx'
-import Writings from './Writings/Writings.jsx'
-import AboutUs from './Aboutus/AboutUs.jsx'
+import Authors from './HomeSection/Authors/Authors.jsx'
+import Writings from './HomeSection/Writings/Writings.jsx'
+import AboutUs from './HomeSection/Aboutus/AboutUs.jsx'
 import Dashboard from './Dashboard/Dashboard.jsx'
 import Login from './Authentication/Login.jsx'
 import Signup from './Authentication/Signup.jsx'
@@ -19,7 +20,7 @@ import Profile from './Dashboard/Inside/Profile.jsx'
 import Edit from './Dashboard/Inside/Edit.jsx'
 import Post from './Dashboard/Inside/Post.jsx'
 import Analytics from './Dashboard/Inside/Analytics.jsx'
-import Logout from './Dashboard/Inside/Logout.jsx'
+import Logout from './Authentication/Logout.jsx'
 
 
 const router = createBrowserRouter([
@@ -90,7 +91,8 @@ const router = createBrowserRouter([
     ]}])
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-  <React.StrictMode>
+  <React.StrictMode> 
     <RouterProvider router={router}/>
+  
   </React.StrictMode>,
 )
