@@ -5,19 +5,29 @@ import axios from 'axios';
 import Logo from './assets/pencraftll.png';
 
 const Navbar = () => {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [navVisible, setNavVisible] = useState(false); // State to control visibility
-  const navigate = useNavigate();
+ // State to manage user login status
+ const [isLoggedIn, setIsLoggedIn] = useState(false);
+  
+ // State to control the visibility of the navigation menu
+ const [navVisible, setNavVisible] = useState(false);
+ 
+ // Hook from react-router-dom to programmatically navigate
+ const navigate = useNavigate();
 
-  const fetchUserData = async () => {
-    try {
-      const response = await axios.get('http://localhost:8000/api/auth/user', { withCredentials: true });
-      console.log('API Response:', response);
-      setIsLoggedIn(response.status === 200);
-    } catch (error) {
-      console.error('Error fetching user data:', error);
-    }
-  };
+ // Function to fetch user data and update the login status
+ const fetchUserData = async () => {
+   try {
+     // Make a GET request to the server to check if the user is logged in
+     const response = await axios.get('http://localhost:8000/api/auth/user', { withCredentials: true });
+     console.log('API Response:', response);
+     
+     // Set login status based on the response status
+     setIsLoggedIn(response.status === 200);
+   } catch (error) {
+     console.error('Error fetching user data:', error);
+   }
+ };
+
 
   useEffect(() => {
     fetchUserData(); // Call the fetch function when the component mounts

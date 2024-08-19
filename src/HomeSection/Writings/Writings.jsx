@@ -15,6 +15,7 @@ const Writings = () => {
           throw new Error('Failed to fetch blogs');
         }
         const data = await response.json();
+        console.log(data);
 
         // Transform the fetched data into the format expected by the component
         const transformedBlogs = data.map((post) => ({
@@ -77,8 +78,8 @@ const Writings = () => {
                 onChange={(e) => setFilterOption(e.target.value)}
               >
                 <option value=''>All</option>
-                <option value='poem'>Poem</option>
-                <option value='shortstory'>Short Story</option>
+                <option value='Poem'>Poem</option>
+                <option value='Story'>Short Story</option>
                 <option value='longstory'>Long Story</option>
                 <option value='essay'>Essay</option>
                 <option value='article'>Article</option>
